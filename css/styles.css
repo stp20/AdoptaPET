@@ -1,0 +1,106 @@
+    body {
+        background-color: #f0f4f4;
+        color: #333;
+    }
+
+    .navbar {
+        background-color: #008b8b;
+    }
+
+    .navbar a,
+    .navbar-brand {
+        color: #fff !important;
+    }
+
+    .switch-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .switch {
+        display: flex;
+        background: #ccc;
+        border-radius: 25px;
+        overflow: hidden;
+        width: 220px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .switch input {
+        display: none;
+    }
+
+    .switch-label {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+        z-index: 2;
+        position: relative;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .switch-slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        background: #008b8b;
+        border-radius: 25px;
+        transition: transform 0.3s ease;
+    }
+
+    #toggle:checked~.switch-slider {
+        transform: translateX(100%);
+    }
+
+    .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .btn-adoptar {
+        background-color: #008b8b;
+        color: white;
+    }
+
+    .btn-adoptar:hover {
+        background-color: #006666;
+    }
+
+    /* Ajustar imágenes dentro de las tarjetas */
+    .card-img-top {
+        height: 200px;
+        /* Altura fija */
+        object-fit: cover;
+        /* Mantiene proporción y recorta lo que sobra */
+        transition: transform 0.4s ease;
+        /* Animación suave */
+    }
+
+    /* Efecto hover (zoom ligero) */
+    .card-img-top:hover {
+        transform: scale(1.08);
+        /* Aumenta un poco la imagen */
+    }
+
+    .card-img-top:hover {
+        transform: translateY(-8px);
+        /* Se mueve hacia arriba */
+    }
+
+
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 30px 0;
+        margin-top: 40px;
+    }
+
+    footer a {
+        color: #00ced1;
+        margin: 0 10px;
+        text-decoration: none;
+    }
