@@ -3,24 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🐶ྀadoptaPET🐱</title>
+  <title>🐶 Iniciar Sesión 🐱</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
-
 <body>
   <!-- NAV -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="ingreso.html">🐕AdoptaPET🐈</a>
+      <a class="navbar-brand" href="index.html">🐕AdoptaPET🐈</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#">Admin 📌</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Ingresar Adopción 🐾</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Perfil👤📝</a></li>
+          <li class="nav-item"><a class="nav-link" href="registro.html">Registrate 📝</a></li>
         </ul>
         <form class="d-flex ms-3">
           <input class="form-control me-2" type="search" placeholder="Buscar mascota">
@@ -30,22 +28,28 @@
     </div>
   </nav>
 
-  <!-- Switch -->
-  <div class="switch-container">
-    <label class="switch">
-      <input type="checkbox" id="toggle">
-      <span class="switch-label">Perros</span>
-      <span class="switch-label">Gatos</span>
-      <span class="switch-slider"></span>
-    </label>
+  <!-- Login Form -->
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%; border-radius: 20px;">
+      <h2 class="text-center mb-4">🔐 Iniciar Sesión</h2>
+      <form id="loginForm">
+        <div class="mb-3">
+          <label for="email" class="form-label">📧 Correo electrónico</label>
+          <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">🔑 Contraseña</label>
+          <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+      </form>
+      <div class="text-center mt-3">
+        <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+      </div>
+    </div>
   </div>
 
-  <!-- Cards -->
-  <div class="container py-4">
-    <div class="row g-4" id="pet-container"></div>
-  </div>
-
-  <!-- Footer -->
+   <!-- Footer -->
   <footer class="text-center">
     <div class="container">
       <p>👉 Síguenos en nuestras redes sociales 👈</p>
@@ -57,6 +61,11 @@
   </footer>
 
   <script src="css/bootstrap.bundle.min.js"></script>
-  <script src="js/funcionregistrado.js" ></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      window.location.href = "ingreso.html"; // Redirección automática
+    });
+  </script>
 </body>
 </html>
