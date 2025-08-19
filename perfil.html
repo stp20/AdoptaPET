@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil | adoptaPET</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <style>
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #17a2b8; /* turquesa */
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="ingreso.html">🐕AdoptaPET🐈</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Admin 📌</a></li>
+          <li class="nav-item"><a class="nav-link" href="nuevoingresoadopcion.html">Ingresar Adopción 🐾</a></li>
+          <li class="nav-item"><a class="nav-link" href="perfil.html">Perfil👤</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Cerrar sesion ⏻</a></li>
+        </ul>
+        <form class="d-flex ms-3">
+          <input class="form-control me-2" type="search" placeholder="Buscar mascota">
+          <button class="btn btn-light" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+<!-- Perfil -->
+<div class="container my-5">
+  <h2 class="text-center mb-4">Mi Perfil</h2>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow p-4 bg-white">
+        <div class="text-center mb-4">
+          <img id="fotoPerfil" src="img/perfil-default.jpg" alt="Foto de perfil" class="profile-img">
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Nombre:</label>
+          <p id="nombreUsuario"></p>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Apellido:</label>
+          <p id="apellidoUsuario"></p>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Correo:</label>
+          <p id="emailUsuario"></p>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Número de contacto:</label>
+          <p id="contactoUsuario"></p>
+        </div>
+
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción de mi perfil</label>
+          <textarea id="descripcion" class="form-control" rows="3" placeholder="Agrega una descripción sobre ti..."></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="imagenPerfil" class="form-label">Cambiar foto de perfil</label>
+          <input type="file" id="imagenPerfil" class="form-control" accept="image/*">
+        </div>
+
+        <button id="guardarPerfil" class="btn btn-info w-100">Guardar Perfil</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>👉 Síguenos en nuestras redes sociales 👈</p>
+      <a href="https://www.facebook.com/groups/adopcionmascotasjc/?locale=es_LA">ⓕ Facebook ⓕ</a> | <a href="https://www.instagram.com/adoptaaunperritochile/">🅾 Instagram 🅾</a> | <a href="https://x.com/AnimalParaiso">𝕏 Twitter 𝕏</a>
+      <div class="mt-3">
+        <a href="#">📝 Regístrate 📝</a> | <a href="trabaja.html">💼 Trabaja con nosotros 💼</a> | <a href="nosotros.html">🙋‍♂️ Nosotros 🙋‍♀️</a>
+      </div>
+    </div>
+  </footer>
+
+<script src="css/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Cargar datos de usuario desde localStorage
+  const usuario = JSON.parse(localStorage.getItem("usuario")) || {};
+  document.getElementById("nombreUsuario").textContent = usuario.nombre || "";
+  document.getElementById("apellidoUsuario").textContent = usuario.apellido || "";
+  document.getElementById("emailUsuario").textContent = usuario.email || "";
+  document.getElementById("contactoUsuario").textContent = usuario.contacto || "";
+
+  // Cargar descripcion e imagen de perfil guardadas
+  const perfil = JSON.parse(localStorage.getItem("perfil")) || {};
+  if(perfil.descripcion) document.getElementById("descripcion").value = perfil.descripcion;
+  if(perfil.imagen) document.getElementById("fotoPerfil").src = perfil.imagen;
+
+  // Actualizar imagen de perfil al seleccionar archivo
+  document.getElementById("imagenPerfil").addEventListener("change", function(){
+    const file = this.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onload = function(e){
+        document.getElementById("fotoPerfil").src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Guardar perfil
+  document.getElementById("guardarPerfil").addEventListener("click", () => {
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const imagen = document.getElementById("fotoPerfil").src;
+
+    localStorage.setItem("perfil", JSON.stringify({ descripcion, imagen }));
+    alert("Perfil actualizado con éxito!");
+  });
+});
+</script>
+
+</body>
+</html>
