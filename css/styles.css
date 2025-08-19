@@ -1,154 +1,209 @@
     body {
-        background-color: #f0f4f4;
-        color: #333;
+      background-image: url("../img/nosotros/fondo.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* Capa de sombra sobre el fondo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      /* sombra negra con 50% de opacidad */
+      z-index: -1;
+      /* se queda detrás del contenido */
     }
 
     .navbar {
-        background-color: #008b8b;
+      background-color: #008b8b;
     }
 
     .navbar a,
     .navbar-brand {
-        color: #fff !important;
+      color: #fff !important;
     }
 
     .switch-container {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
     }
 
     .switch {
-        display: flex;
-        background: #ccc;
-        border-radius: 25px;
-        overflow: hidden;
-        width: 220px;
-        position: relative;
-        cursor: pointer;
+      display: flex;
+      background: #ccc;
+      border-radius: 25px;
+      overflow: hidden;
+      width: 220px;
+      position: relative;
+      cursor: pointer;
     }
 
     .switch input {
-        display: none;
+      display: none;
     }
 
     .switch-label {
-        flex: 1;
-        text-align: center;
-        padding: 10px 0;
-        z-index: 2;
-        position: relative;
-        font-weight: bold;
-        color: #fff;
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 2;
+      position: relative;
+      font-weight: bold;
+      color: #fff;
     }
 
     .switch-slider {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-        background: #008b8b;
-        border-radius: 25px;
-        transition: transform 0.3s ease;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      background: #008b8b;
+      border-radius: 25px;
+      transition: transform 0.3s ease;
     }
 
     #toggle:checked~.switch-slider {
-        transform: translateX(100%);
+      transform: translateX(100%);
     }
 
     .card {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: none;
     }
 
     .btn-adoptar {
-        background-color: #008b8b;
-        color: white;
+      background-color: #008b8b;
+      color: white;
     }
 
     .btn-adoptar:hover {
-        background-color: #006666;
+      background-color: #006666;
     }
 
     /* Ajustar imágenes dentro de las tarjetas */
     .card-img-top {
-        height: 200px;
-        /* Altura fija */
-        object-fit: cover;
-        /* Mantiene proporción y recorta lo que sobra */
-        transition: transform 0.4s ease;
-        /* Animación suave */
+      height: 200px;
+      /* Altura fija */
+      object-fit: cover;
+      /* Mantiene proporción y recorta lo que sobra */
+      transition: transform 0.4s ease;
+      /* Animación suave */
     }
 
     /* Efecto hover (zoom ligero) */
     .card-img-top:hover {
-        transform: scale(1.08);
-        /* Aumenta un poco la imagen */
+      transform: scale(1.08);
+      /* Aumenta un poco la imagen */
     }
 
     .card-img-top:hover {
-        transform: translateY(-8px);
-        /* Se mueve hacia arriba */
+      transform: translateY(-8px);
+      /* Se mueve hacia arriba */
     }
 
 
     footer {
-        background-color: #333;
-        color: #fff;
-        padding: 30px 0;
-        margin-top: 40px;
+      background-color: #333;
+      color: #fff;
+      padding: 30px 0;
+      margin-top: 40px;
     }
 
     footer a {
-        color: #00ced1;
-        margin: 0 10px;
-        text-decoration: none;
+      color: #00ced1;
+      margin: 0 10px;
+      text-decoration: none;
     }
 
     .pet-card .card {
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: none;
-}
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+    }
 
-.pet-card .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-}
+    .pet-card .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
 
-.pet-card .card-img-top {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  transition: transform 0.3s;
-}
+    .pet-card .card-img-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: transform 0.3s;
+    }
 
-.pet-card .card-img-top:hover {
-  transform: scale(1.1);
-}
+    .pet-card .card-img-top:hover {
+      transform: scale(1.1);
+    }
 
-.pet-card .card-body {
-  background-color: #f5f5f5; /* gris claro */
-  color: #064e54; /* turquesa oscuro para texto */
-}
+    .pet-card .card-body {
+      background-color: #f5f5f5;
+      /* gris claro */
+      color: #064e54;
+      /* turquesa oscuro para texto */
+    }
 
-.pet-card .btn-info {
-  background-color: #00bfa5; /* turquesa */
-  border: none;
-  transition: background-color 0.3s, transform 0.3s;
-}
+    .pet-card .btn-info {
+      background-color: #00bfa5;
+      /* turquesa */
+      border: none;
+      transition: background-color 0.3s, transform 0.3s;
+    }
 
-.pet-card .btn-info:hover {
-  background-color: #009d8a; /* turquesa más oscuro */
-  transform: scale(1.05);
-  color: white;
-}
+    .pet-card .btn-info:hover {
+      background-color: #009d8a;
+      /* turquesa más oscuro */
+      transform: scale(1.05);
+      color: white;
+    }
 
-.card-title {
-  font-weight: 700;
-  font-size: 1.2rem;
-}
+    .card-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
 
-.card-text {
-  font-size: 0.95rem;
-}
+    .card-text {
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      /* más grande */
+      font-weight: bold;
+      /* más gruesa */
+      color: #ffffff;
+      /* color llamativo */
+      text-transform: uppercase;
+      /* todo en mayúsculas */
+      text-align: center;
+      /* centrado */
+      text-shadow: 2px 2px 5px rgba(40, 225, 238, 0.5);
+      /* sombra */
+      margin-bottom: 30px;
+    }
+
+    h4 {
+      font-size: 2.Srem;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 2.Srem;
+      font-weight: bold;
+      color: rgb(153, 197, 190);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 30px;
+    }
