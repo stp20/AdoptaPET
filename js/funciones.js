@@ -96,3 +96,40 @@ document.querySelector("form").addEventListener("submit", (e) => {
   document.querySelectorAll("nav a, footer a").forEach(a => a.style.backgroundColor = "");
   links.forEach(a => a.style.backgroundColor = "yellow");
 });
+
+
+    const images = document.querySelectorAll('.carousel img');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const indicators = document.querySelectorAll('.carousel-indicators span');
+    let index = 0;
+
+    function showImage(i) {
+      images.forEach(img => img.classList.remove('active'));
+      indicators.forEach(ind => ind.classList.remove('active'));
+      images[i].classList.add('active');
+      indicators[i].classList.add('active');
+    }
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    });
+
+    indicators.forEach((ind, i) => {
+      ind.addEventListener('click', () => {
+        index = i;
+        showImage(index);
+      });
+    });
+
+    // Cambio automático cada 5 segundos
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    }, 5000);
