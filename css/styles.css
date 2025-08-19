@@ -104,3 +104,51 @@
         margin: 0 10px;
         text-decoration: none;
     }
+
+    .pet-card .card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+}
+
+.pet-card .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.pet-card .card-img-top {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.pet-card .card-img-top:hover {
+  transform: scale(1.1);
+}
+
+.pet-card .card-body {
+  background-color: #f5f5f5; /* gris claro */
+  color: #064e54; /* turquesa oscuro para texto */
+}
+
+.pet-card .btn-info {
+  background-color: #00bfa5; /* turquesa */
+  border: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.pet-card .btn-info:hover {
+  background-color: #009d8a; /* turquesa más oscuro */
+  transform: scale(1.05);
+  color: white;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+}

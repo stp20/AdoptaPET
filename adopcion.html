@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Adopción - adoptaPET</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <!-- NAV -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🐕AdoptaPET🐈</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Admin 📌</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Registrate 📝</a></li>
+                </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Buscar mascota">
+                    <button class="btn btn-light" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Formulario de Adopción</h2>
+        <form id="adopcionForm" class="p-4 rounded shadow bg-white">
+
+            <!-- Tipo de mascota -->
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo de mascota</label>
+                <select id="tipo" class="form-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="perro">Perro</option>
+                    <option value="gato">Gato</option>
+                </select>
+            </div>
+
+            <!-- Selección de mascota -->
+            <div class="mb-3">
+                <label for="mascota" class="form-label">Mascota</label>
+                <select id="mascota" class="form-select" required>
+                    <option value="">Seleccione una mascota...</option>
+                </select>
+            </div>
+
+            <!-- Nombre adoptante -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Tu Nombre</label>
+                <input type="text" id="nombre" class="form-control" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Número de Contacto</label>
+                <input type="tel" id="telefono" class="form-control" required>
+            </div>
+
+            <!-- Motivo adopción -->
+            <div class="mb-3">
+                <label for="motivo" class="form-label">¿Por qué deseas adoptar?</label>
+                <textarea id="motivo" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Enviar Solicitud</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const perros = ["Firulais", "Rex", "Max", "Toby", "Luna", "Rocky", "Bobby", "Nina", "Bruno", "Sol", "Duke", "Kira"];
+            const gatos = ["Michi", "Pelusa", "Tom", "Neko", "Simba", "Lily", "Cleo", "Salem", "Milo", "Nina", "Garfield", "Luna"];
+
+            const tipoSelect = document.getElementById("tipo");
+            const mascotaSelect = document.getElementById("mascota");
+
+            // Llenar mascotas según tipo
+            tipoSelect.addEventListener("change", () => {
+                mascotaSelect.innerHTML = "<option value=''>Seleccione una mascota...</option>";
+                let lista = tipoSelect.value === "perro" ? perros : gatos;
+                lista.forEach(mascota => {
+                    let option = document.createElement("option");
+                    option.value = mascota;
+                    option.textContent = mascota;
+                    mascotaSelect.appendChild(option);
+                });
+
+                // Preseleccionar si venía de localStorage
+                const mascotaSeleccionada = localStorage.getItem("mascotaSeleccionada");
+                if (mascotaSeleccionada && lista.includes(mascotaSeleccionada)) {
+                    mascotaSelect.value = mascotaSeleccionada;
+                }
+            });
+
+            // Preselección inicial si viene de la página principal
+            const mascotaSeleccionada = localStorage.getItem("mascotaSeleccionada");
+            if (mascotaSeleccionada) {
+                if (perros.includes(mascotaSeleccionada)) {
+                    tipoSelect.value = "perro";
+                    tipoSelect.dispatchEvent(new Event("change"));
+                    mascotaSelect.value = mascotaSeleccionada;
+                } else if (gatos.includes(mascotaSeleccionada)) {
+                    tipoSelect.value = "gato";
+                    tipoSelect.dispatchEvent(new Event("change"));
+                    mascotaSelect.value = mascotaSeleccionada;
+                }
+            }
+
+            // Validar envío
+            document.getElementById("adopcionForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                alert("Solicitud enviada con éxito. Nos contactaremos contigo pronto.");
+                e.target.reset();
+                localStorage.removeItem("mascotaSeleccionada");
+            });
+        });
+    </script>
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>👉 Síguenos en nuestras redes sociales 👈</p>
+            <a href="#">ⓕ Facebook ⓕ</a> | <a href="#">🅾 Instagram 🅾</a> | <a href="#">𝕏 Twitter 𝕏</a>
+            <div class="mt-3">
+                <a href="#">📝 Regístrate 📝</a> | <a href="#">💼 Trabaja con nosotros 💼</a> | <a href="#">🙋‍♂️
+                    Nosotros 🙋‍♀️</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

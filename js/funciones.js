@@ -30,34 +30,69 @@ const cats = [
     { nombre: "Nube", img: "../img/gatos/gato12.jpg", desc: "Muy tranquila." }
 ];
 
-const petContainer = document.getElementById("pet-container");
-const toggle = document.getElementById("toggle");
+const allPets = dogs.concat(cats);
+let mostrarPerros = true;
 
-function renderPets(pets) {
-    petContainer.innerHTML = "";
-    pets.forEach(pet => {
-        const card = `
-          <div class="col-md-4 col-lg-3">
-            <div class="card h-100">
-              <img src="${pet.img}" class="card-img-top" alt="${pet.name}">
-              <div class="card-body">
-                <h5 class="card-title">${pet.nombre}</h5>
-                <p class="card-text">${pet.desc}</p>
-                <a href="adopcion.html" class="btn btn-adoptar w-100">Adoptar</a>
-              </div>
-            </div>
-          </div>`;
-        petContainer.innerHTML += card;
-    });
+// Función para mostrar tarjetas
+function mostrarMascotas(lista) {
+  const container = document.getElementById("pet-container");
+  container.innerHTML = "";
+  lista.forEach(mascota => {
+    container.innerHTML += `
+      <div class="col-md-3 mb-4 pet-card">
+        <div class="card h-100 shadow-sm">
+          <img src="${mascota.img}" class="card-img-top" alt="${mascota.nombre}" style="height:200px; object-fit:cover; transition: transform 0.3s;">
+          <div class="card-body text-center">
+            <h5 class="card-title">${mascota.nombre}</h5>
+            <p class="card-text">${mascota.desc}</p>
+            <button class="btn btn-info" onclick="adoptar('${mascota.nombre}')">Adoptar</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  // Efecto hover en imagen
+  document.querySelectorAll(".card-img-top").forEach(img => {
+    img.addEventListener("mouseover", () => img.style.transform = "scale(1.1)");
+    img.addEventListener("mouseout", () => img.style.transform = "scale(1)");
+  });
 }
 
-toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-        renderPets(cats);
-    } else {
-        renderPets(dogs);
-    }
+// Función para elegir mascota
+function adoptar(nombre) {
+  localStorage.setItem("mascotaSeleccionada", nombre);
+  window.location.href = "adopcion.html";
+}
+
+// Inicializar con perros
+mostrarMascotas(dogs);
+
+// Toggle switch
+document.getElementById("toggle").addEventListener("change", (e) => {
+  mostrarPerros = !e.target.checked;
+  mostrarMascotas(mostrarPerros ? dogs : cats);
 });
 
-// Mostrar perros por defecto
-renderPets(dogs);
+// Buscador global
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const query = e.target.querySelector("input").value.toLowerCase().trim();
+
+  // Filtrar mascotas
+  const filtradas = allPets.filter(m => 
+    m.nombre.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query)
+  );
+
+  // Filtrar links del nav y footer
+  const links = Array.from(document.querySelectorAll("nav a, footer a")).filter(a => 
+    a.textContent.toLowerCase().includes(query)
+  );
+
+  // Mostrar mascotas filtradas
+  mostrarMascotas(filtradas);
+
+  // Resaltar links encontrados
+  document.querySelectorAll("nav a, footer a").forEach(a => a.style.backgroundColor = "");
+  links.forEach(a => a.style.backgroundColor = "yellow");
+});
